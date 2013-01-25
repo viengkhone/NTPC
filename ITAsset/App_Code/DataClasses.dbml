@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ITAssetTracking" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=AP02\SQLEXPRESS;Initial Catalog=ITAssetTracking;User ID=jump" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ITAssetTrackingConnectionString2" Provider="System.Data.SqlClient" />
+  <Table Name="ITASSET.Admin" Member="Admins">
+    <Type Name="Admin">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="StaffID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="ITASSET.Section" Member="Sections">
+    <Type Name="Section">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DivisionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Section" Member="Section1" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Section_ITAssetAssignHistory" Member="ITAssetAssignHistories" ThisKey="id" OtherKey="SectionID" Type="ITAssetAssignHistory" />
+      <Association Name="Section_ITAssetProductInfo" Member="ITAssetProductInfos" ThisKey="id" OtherKey="SectionID" Type="ITAssetProductInfo" />
+      <Association Name="Division_Section" Member="Division" ThisKey="DivisionID" OtherKey="id" Type="Division" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="ITASSET.Division" Member="Divisions">
+    <Type Name="Division">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Division" Member="Division1" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Division_Section" Member="Sections" ThisKey="id" OtherKey="DivisionID" Type="Section" />
+    </Type>
+  </Table>
+  <Table Name="ITASSET.ExternalUser" Member="ExternalUsers">
+    <Type Name="ExternalUser">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="enumExternalUserType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Details" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="ITASSET.ITAssetAssignHistory" Member="ITAssetAssignHistories">
+    <Type Name="ITAssetAssignHistory">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ITAssetProductInfoID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="enumStatus" Type="System.Decimal" DbType="Decimal(2,0)" CanBeNull="true" />
+      <Column Name="CurrentUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CurrentLocationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SectionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AssignmentComment" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="editBy" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="editDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Section_ITAssetAssignHistory" Member="Section" ThisKey="SectionID" OtherKey="id" Type="Section" IsForeignKey="true" />
+      <Association Name="ITAssetProductInfo_ITAssetAssignHistory" Member="ITAssetProductInfo" ThisKey="ITAssetProductInfoID" OtherKey="id" Type="ITAssetProductInfo" IsForeignKey="true" />
+      <Association Name="Location_ITAssetAssignHistory" Member="Location" ThisKey="CurrentLocationID" OtherKey="LID" Type="Location" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="ITASSET.ITAssetProductInfo" Member="ITAssetProductInfos">
+    <Type Name="ITAssetProductInfo">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AssetID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="true" />
+      <Column Name="ITAssetSubTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ITAssetDetails" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="UniquePartNum" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ProductNumber" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="PR_NO" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="PR_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PO_NO" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="PO_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CostCode" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="SupplierID" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="ReceivingNumber" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ShipmentDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Price" Type="System.Double" DbType="Decimal(16,2)" CanBeNull="true" />
+      <Column Name="Currency" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="WarrantyStart" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="WarrantyEnd" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DateOfUse" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SubmitDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="SubmitBy" Type="System.String" DbType="NVarChar(120) NOT NULL" CanBeNull="false" />
+      <Column Name="EditDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EditBy" Type="System.String" DbType="NVarChar(120)" CanBeNull="true" />
+      <Column Name="enumStatus" Type="System.Decimal" DbType="Decimal(2,0)" CanBeNull="true" />
+      <Column Name="isAsset" Type="System.Double" DbType="Decimal(1,0)" CanBeNull="true" />
+      <Column Name="currentUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="currentLocationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AssignmentComment" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="SectionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="ITAssetProductInfo_ITAssetAssignHistory" Member="ITAssetAssignHistories" ThisKey="id" OtherKey="ITAssetProductInfoID" Type="ITAssetAssignHistory" />
+      <Association Name="Section_ITAssetProductInfo" Member="Section" ThisKey="SectionID" OtherKey="id" Type="Section" IsForeignKey="true" />
+      <Association Name="ITAssetSubType_ITAssetProductInfo" Member="ITAssetSubType" ThisKey="ITAssetSubTypeID" OtherKey="id" Type="ITAssetSubType" IsForeignKey="true" />
+      <Association Name="Location_ITAssetProductInfo" Member="Location" ThisKey="currentLocationID" OtherKey="LID" Type="Location" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="ITASSET.ITAssetSubType" Member="ITAssetSubTypes">
+    <Type Name="ITAssetSubType">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SubTypeName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="SubTypeDetails" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ITAssetTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="ITAssetSubType_ITAssetProductInfo" Member="ITAssetProductInfos" ThisKey="id" OtherKey="ITAssetSubTypeID" Type="ITAssetProductInfo" />
+      <Association Name="ITAssetType_ITAssetSubType" Member="ITAssetType" ThisKey="ITAssetTypeID" OtherKey="id" Type="ITAssetType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="ITASSET.ITAssetType" Member="ITAssetTypes">
+    <Type Name="ITAssetType">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TypeName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="TypeDetails" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="isAsset" Type="System.Decimal" DbType="Decimal(1,0)" CanBeNull="true" />
+      <Association Name="ITAssetType_ITAssetSubType" Member="ITAssetSubTypes" ThisKey="id" OtherKey="ITAssetTypeID" Type="ITAssetSubType" />
+    </Type>
+  </Table>
+  <Table Name="ITASSET.Location" Member="Locations">
+    <Type Name="Location">
+      <Column Name="LID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Location" Member="Location1" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Details" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="Location_ITAssetAssignHistory" Member="ITAssetAssignHistories" ThisKey="LID" OtherKey="CurrentLocationID" Type="ITAssetAssignHistory" />
+      <Association Name="Location_ITAssetProductInfo" Member="ITAssetProductInfos" ThisKey="LID" OtherKey="currentLocationID" Type="ITAssetProductInfo" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vw_ITAssetAllProducts" Member="vw_ITAssetAllProducts">
+    <Type Name="vw_ITAssetAllProduct">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AssetCode" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ITAssetTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TypeName" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="ITAssetSubTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SubTypeName" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="DivisionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DivCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Division" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="SectionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SecCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Section" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="currentLocationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Location" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Details" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ITAssetDetails" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="UniquePartNum" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ProductNumber" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="CostCode" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="WarrantyStart" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="WarrantyEnd" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="StatusName" Type="System.String" DbType="VarChar(17)" CanBeNull="true" />
+      <Column Name="currentUserID" Type="System.Int32" DbType="int" CanBeNull="true" />
+      <Column Name="isAsset" Type="System.Decimal" DbType="Decimal(1,0)" CanBeNull="true" />
+      <Column Name="enumStatus" Type="System.Decimal" DbType="Decimal(1,0)" CanBeNull="true" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="UserType" Type="System.String" DbType="Int" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

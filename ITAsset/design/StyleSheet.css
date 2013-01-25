@@ -1,0 +1,278 @@
+﻿/*---------------------------------------------------
+| General Style
++---------------------------------------------------*/
+html, body, table, tr, td, th, div, h1, h2, h3, h4, input, p, ul, li
+{
+    margin: 0;
+    padding: 0;
+}
+a.no-underline, .no-underline a
+{
+    text-decoration: none;
+}
+html, body, form {
+    font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif;
+    font-size: 12px;
+    min-height: 100%
+}
+.float-right, #HideShowPanel-1, #HideShowPanel-2 {float: right;}
+.float-left {float:left;}
+#header-table 
+{
+    width: 100%;
+    box-shadow: 3px 3px 3px #005B00;
+    border-bottom: 1px solid #005B00;
+    background-color: #ffffff;
+    background-image: url("header-bg.png");
+    background-position: right;
+    background-repeat: repeat-y;
+}
+.website-current-location 
+{
+    font-size: 14px;
+    padding: 10px;
+    font-weight: bold;
+}
+/*---------------------------------------------------
+| Login Page
++---------------------------------------------------*/
+#login-table 
+{
+    width: 530px;
+    border: 1px solid #005B00;
+    margin: 20px 0 0 10px;
+    border-collapse: collapse;
+    background-color: White;
+}
+.login-title-td
+{
+    background-color: #336600;
+    border-bottom: 1px solid #005B00;
+    color: #fff;
+    font-weight: bold;
+    font-size: x-large;
+    padding: 4px 0 0 10px;
+    cursor: move;
+}
+#ContentPlaceHolder1_RequiredLoginPanel table 
+{
+    border-collapse: collapse;
+    text-align: left;
+    margin: 20px;
+}
+#ContentPlaceHolder1_RequiredLoginPanel table tr th 
+{
+    width: 100px;
+    text-align: left;
+}
+#ContentPlaceHolder1_RequiredLoginPanel table tr td input 
+{
+    margin-bottom: 2px;
+}
+
+/*---------------------------------------------------
+| Master.Master Page
++---------------------------------------------------*/
+#lblUser {margin-right: 10px; font-size: 14px; text-transform:capitalize;}
+#TopNav
+{
+	width: 100%;
+	background-color: #005B00;
+    border-bottom: 1px solid #005B00;
+	color: White;
+	border-collapse: collapse;
+}
+#TopNav ul 
+{
+    list-style: none;
+    width: auto;
+    color: White;
+}
+#TopNav ul li 
+{
+   	float: left;
+	position: relative;
+	margin: 0;
+}
+#TopNav ul li a 
+{
+   	display: block;
+	text-align: center;
+	text-decoration: none;
+	padding: 0px;
+	font-weight: bold;
+	color: White;
+	line-height: 40px;
+	vertical-align: middle;
+	width: 100px;
+	border-right: 1px solid #008E00;
+}
+#TopNav ul li a:hover {background-color: #99CC00;}
+.selected {background-color: #99CC00;}
+.ui-button-text, .button
+{
+    font-size: 12px !important;
+}
+
+/* Veritcal Tabs*/
+div#settings {
+    position: relative;
+    padding-left: 200px;
+    background-image: none;
+    background-color: White;
+    margin-right: 10px;
+}
+ 
+div#settings > div {
+    min-height: 300px;
+}
+ 
+div#settings .ui-tabs-nav {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    width: 200px;
+    padding: 5px 0px 5px 5px;
+    background-image: none;
+    border-radius: 0px;
+    -moz-border-radius-bottomright: 0px;
+}
+ 
+div#settings .ui-tabs-nav li {
+    left: 0px;
+    width: 195px;
+    border-right: none;
+    overflow: hidden;
+    margin-bottom: 2px;
+    border-radius: 0px;
+    -moz-border-radius-bottomright: 0px;
+}
+ 
+div#settings .ui-tabs-nav li a {
+    float: right;
+    width: 100%;
+    text-align: right;
+}
+ 
+div#settings .ui-tabs-nav li.ui-tabs-active {
+    border: none;
+    border-right: solid 1px #fff;
+    background: none;
+    background-color: #fff;
+    width: 200px;
+}
+
+/*---------------------------------------------------
+| Manage.aspx Page
++---------------------------------------------------*/
+.manage-detailview
+{
+    margin-top: 10px;
+    border: 1px solid #808080;
+}
+.manage-detailview tr td {padding:0px 5px 0px 5px;}
+.manage-detailview-field-header {width: 150px;}
+.manage-detailview input {min-width: 200px;}
+.manage-filter-panel input, .manage-filter-panel select {border-bottom:1px solid #a6c9e2}
+
+/* Start detail view : Green */
+.gridview-green
+{
+    min-width: 600px;
+    background-color: White;
+    border: 1px solid #808080;
+}
+.gridview-green tr th, .gridview-green tr th a {
+    background-color: #99CC00;
+    color: White;
+    padding: 10px;
+    border: 1px solid #808080;
+}
+.gridview-green tr td {padding: 0 4px 0 4px;}
+.gridview-green-footer {background-color: #99CC00;}
+.gridview-green-alternate {background-color: #E6FF99;}
+.gridview-green-selected-row {font-weight:bold; background-color:#CCCC00;}
+/* End detail view : Green */
+
+/* Start detail view : Purple->changed to Dark-Blue */
+.gridview-purple
+{
+    background-color: White;
+    border: 1px solid #C9DDFA;
+}
+.gridview-purple tr th {
+    background-color: #336699;
+    padding: 10px;
+    border-color: #C9DDFA;
+}
+.gridview-purple tr th, .gridview-purple tr th a {color: White;}
+.gridview-purple tr td {padding: 0 4px 0 4px; border-color: #C9DDFA;}
+.gridview-purple-footer {background-color: #336699; color: White; height: 30px;}
+.gridview-purple-alternate {background-color: #EFF3FB;}
+.gridview-purple-selected-row {font-weight:bold; background-color:#EFF3FB;}
+/* End detail view : Purple */
+
+/* filtering panel */
+.keyword {min-width: 200px;}
+.manage-filter-panel {margin-bottom:10px;border: 1px solid #C9DDFA;background-color:#E7F4FF;}
+.manage-filter-panel table {border: 0px;}
+.manage-filter-panel table tr td {border:0px;}
+.manage-filter-panel table tr th 
+{
+    text-align:left;
+    font-weight:bold;
+    min-width:150px;
+    background-color:#5C9CCC; color: #FFFFFF;
+    padding: 0 4px 0 4px;
+}
+
+/*---------------------------------------------------
+| History.aspx Page
++---------------------------------------------------*/
+a.action-icon img {border:none;margin: 2px 2px 0 2px;}
+/* filtering panel */
+.history-filter-panel {margin-bottom:10px;border:1px solid #FFC267;background-color:#FFEB9A;}
+.history-filter-panel table {border: 0px;}
+.history-filter-panel table tr td {border:0px;}
+.history-filter-panel table tr th 
+{
+    text-align:left;
+    font-weight:bold;
+    min-width:150px;
+    background-color:#F6A828; color: #FFFFFF;
+    padding: 0 2px 0 2px;
+}
+/* Start detail view : Orange */
+.gridview-orange
+{
+    background-color: White;
+    border-color: #FFC267;
+}
+.gridview-orange tr th {
+    background-color: #F6A828;
+    color: White;
+    padding: 6px 0 6px 0;
+    border:1px solid #FFC267;
+}
+.gridview-orange tr td {padding:0 2px 0 2px;border:1px solid #FFC267;color:#336699;}
+.gridview-orange-footer {background-color: #F6A828;color: White; height: 30px;}
+.gridview-orange-alternate {background-color: #FFF4CE;}
+/* End detail view : Orange */
+
+/* Report.aspx */
+.gridview-rpt 
+{
+      min-width: 600px;
+      border: 1px solid #808080;
+      color: Black;
+}
+.gridview-rpt tr th {
+    color: White;
+    background-color: #554929;
+    border: 1px solid #808080;
+    padding: 10px;
+}
+.gridview-rpt tr td {padding: 0px 4px 0 4px;}
+.gridview-rpt-alternate {background-color: #CCCC99;}
+.crystalstyle { width: 595px; height: 841px;}
