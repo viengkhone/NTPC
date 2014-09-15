@@ -1,3 +1,15 @@
 ﻿table, table tr td, table tr th {
     border-color: #808080;
 }
+/*---------------------------------------------------
+| Dashboard.aspx Page
++---------------------------------------------------*/
+.Asset-Listing-Grid2 tr.header-vertical-orient th a
+{
+    background-color: #99CC00;
+    color: White;
+    height: 150px;
+    writing-mode: bt-rl;
+    white-space:nowrap;
+    display:block;
+}

@@ -23,7 +23,7 @@ public partial class Manage : System.Web.UI.Page
             {
                 hfSelectedTAB.Value = "0";
             }
-            SqlDataSource1.SelectCommand = string.Format("SELECT [id], [ITAssetDetails], [UniquePartNum], [currentUserID], [Location], [UserType], [UserName], [StatusName] FROM [vw_ITAssetAllProducts] WHERE ([id] = {0})", Convert.ToInt32(Request.QueryString["id"]));
+            SqlDataSource1.SelectCommand = string.Format("SELECT * FROM [vw_ITAssetAllProducts] WHERE ([id] = {0})", Convert.ToInt32(Request.QueryString["id"]));
         }
     }
     protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -42,7 +42,7 @@ public partial class Manage : System.Web.UI.Page
         AssetUtility Util = new AssetUtility();
         string InputKeyword = Keywords.Text;
 
-        SqlDataSource1.SelectCommand = string.Format("SELECT [id], [ITAssetDetails], [UniquePartNum], [currentUserID], [Location], [UserType], [UserName], [StatusName] FROM [vw_ITAssetAllProducts] WHERE (([TypeName] LIKE '%{0}%') OR ([SubTypeName] LIKE '%{0}%') OR ([ITAssetDetails] LIKE '%{0}%') OR ([UniquePartNum] LIKE '%{0}%') OR ([UserName] LIKE '%{0}%') OR ([Location] LIKE '%{0}%'))", Util.CleanInput(InputKeyword));
+        SqlDataSource1.SelectCommand = string.Format("SELECT * FROM [vw_ITAssetAllProducts] WHERE (([TypeName] LIKE '%{0}%') OR ([SubTypeName] LIKE '%{0}%') OR ([ITAssetDetails] LIKE '%{0}%') OR ([UniquePartNum] LIKE '%{0}%') OR ([UserName] LIKE '%{0}%') OR ([Location] LIKE '%{0}%'))", Util.CleanInput(InputKeyword));
         GridView1.AllowPaging = false ;
     }
     protected void GoToManageAssetPage(object sender, EventArgs e)
@@ -83,9 +83,11 @@ public partial class Manage : System.Web.UI.Page
                 DropDownList SectionDropDown = dw.FindControl("DropDownList5") as DropDownList;
                 SectionDropDown.SelectedValue = "83";
             }
-
             /* the DetailsView2 can only be Updated, insert is not relivant, so, Turn it Off */
-            DetailsView2.Visible = false;
+            if (MyView == "view1")
+            {
+                DetailsView2.Visible = false;
+            }
         }
         else
         {
@@ -105,16 +107,13 @@ public partial class Manage : System.Web.UI.Page
         DetailsView1.DataBind();
         ChangeState(); // Change state of DetailsView2
     }
-    protected void DetailsView1_ItemUpdated(object sender, DetailsViewUpdatedEventArgs e)
-    {
-        ChangeState();
-    }
     /* *******************************************************************************
      * DetailsView 2 has been Turned-Off, we need to turn it ON and refresh its value 
      *********************************************************************************/
     private void ChangeState()
     {
         DetailsView2.Visible = true;
+        SqlDS_DetailsView2.SelectCommand = "SELECT TOP 1 * FROM [ITASSET].[ITAssetProductInfo] ORDER BY id DESC";
         DetailsView2.DataBind();
     }
     protected void linkBtn_category_Click(object sender, EventArgs e)
@@ -146,12 +145,12 @@ public partial class Manage : System.Web.UI.Page
         isAdmin();
     }
 
-    /* disable edit control when user is not admin */
+    /* Disable edit control when user is not admin */
     protected void isAdmin()
     {
-        int anAdmin = Master.PropertyMasterlblUser.Text.IndexOf("[Admin]");
+        int isAdmin = Master.PropertyMasterlblUser.Text.IndexOf("[Admin]");
         //Response.Write("<script>alert('" + Master.PropertyMasterlblUser.Text.ToString() + "');</script>");
-        if (anAdmin == -1)
+        if (isAdmin == -1)
         {
             DetailsView1.Enabled = false;
             DetailsView2.Enabled = false;
@@ -165,5 +164,20 @@ public partial class Manage : System.Web.UI.Page
             DetailsView1.Enabled = false;
             DetailsView2.Enabled = false;
         }
+        
+        // new requirement, all IT Team can modify the status of the IT Asset, 18 Feb 2013
+        // contributor list was added to AssetUtility Class in App_Code/AssetUtility.cs
+        int isContributor = Master.PropertyMasterlblUser.Text.IndexOf("[Contributor]");
+        if (isContributor != -1)
+        {
+            DetailsView2.Enabled = true;            
+            GridView_FullList.Enabled = true;
+            GridView_FullList.Columns.RemoveAt(0); //remove Delete column
+        }
+    }
+    protected void hfUserName_Load(object sender, EventArgs e)
+    {
+        AssetUtility Ut = new AssetUtility();
+        hfUserName.Value = Ut.GetUserNameOnly();
     }
 }

@@ -1,26 +1,18 @@
 ﻿/*---------------------------------------------------
 | General Style
 +---------------------------------------------------*/
-html, body, table, tr, td, th, div, h1, h2, h3, h4, input, p, ul, li
-{
-    margin: 0;
-    padding: 0;
-}
-a.no-underline, .no-underline a
-{
-    text-decoration: none;
-}
+html, body, table, tr, td, th, div, h1, h2, h3, h4, input, span, p, ul, li { margin: 0; padding: 0; }
+a.no-underline, .no-underline a { text-decoration: none; }
 html, body, form {
     font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif;
     font-size: 12px;
     min-height: 100%
 }
-.float-right, #HideShowPanel-1, #HideShowPanel-2 {float: right;}
-.float-left {float:left;}
-#header-table 
+.float-right, #HideShowPanel-1, #HideShowPanel-2 { float: right; }
+.float-left { float:left; }
+#header-table
 {
     width: 100%;
-    box-shadow: 3px 3px 3px #005B00;
     border-bottom: 1px solid #005B00;
     background-color: #ffffff;
     background-image: url("header-bg.png");
@@ -119,14 +111,12 @@ div#settings {
     position: relative;
     padding-left: 200px;
     background-image: none;
+    margin: 0 10px 20px 0;
     background-color: White;
-    margin-right: 10px;
 }
- 
 div#settings > div {
-    min-height: 300px;
+    min-height: 400px;
 }
- 
 div#settings .ui-tabs-nav {
     position: absolute;
     left: 0px;
@@ -151,7 +141,7 @@ div#settings .ui-tabs-nav li {
  
 div#settings .ui-tabs-nav li a {
     float: right;
-    width: 100%;
+    min-width: 100%;
     text-align: right;
 }
  
@@ -162,7 +152,7 @@ div#settings .ui-tabs-nav li.ui-tabs-active {
     background-color: #fff;
     width: 200px;
 }
-
+div#settings ul { border-top: none; border-bottom: none;}
 /*---------------------------------------------------
 | Manage.aspx Page
 +---------------------------------------------------*/
@@ -174,7 +164,6 @@ div#settings .ui-tabs-nav li.ui-tabs-active {
 .manage-detailview tr td {padding:0px 5px 0px 5px;}
 .manage-detailview-field-header {width: 150px;}
 .manage-detailview input {min-width: 200px;}
-.manage-filter-panel input, .manage-filter-panel select {border-bottom:1px solid #a6c9e2}
 
 /* Start detail view : Green */
 .gridview-green
@@ -214,8 +203,9 @@ div#settings .ui-tabs-nav li.ui-tabs-active {
 /* End detail view : Purple */
 
 /* filtering panel */
-.keyword {min-width: 200px;}
-.manage-filter-panel {margin-bottom:10px;border: 1px solid #C9DDFA;background-color:#E7F4FF;}
+.keyword {min-width: 300px;}
+.manage-filter-panel input, .manage-filter-panel select {border-bottom:1px solid #a6c9e2}
+.manage-filter-panel {margin-bottom: 10px;border: 1px solid #C9DDFA; background-color:#E7F4FF;}
 .manage-filter-panel table {border: 0px;}
 .manage-filter-panel table tr td {border:0px;}
 .manage-filter-panel table tr th 
@@ -226,13 +216,38 @@ div#settings .ui-tabs-nav li.ui-tabs-active {
     background-color:#5C9CCC; color: #FFFFFF;
     padding: 0 4px 0 4px;
 }
-
+/*---------------------------------------------------
+| Dashboard.aspx Page
++---------------------------------------------------*/
+.Asset-Listing-Grid2 tr.header-vertical-orient th
+{
+    background-color: #99CC00;
+    color: White;
+    white-space: nowrap;
+    height: 100px;
+    border: 1px solid Black;
+    bottom: -40px;
+}
+.Asset-Listing-Grid2 tr.header-vertical-orient th a
+{
+    display: block;
+    -webkit-transform: rotate(270deg);   
+    -moz-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    transform: rotate(270deg);
+    width: 30px;
+    position: relative;
+    bottom: -30px;
+    text-decoration: none;
+    color: White;
+}
 /*---------------------------------------------------
 | History.aspx Page
 +---------------------------------------------------*/
 a.action-icon img {border:none;margin: 2px 2px 0 2px;}
 /* filtering panel */
-.history-filter-panel {margin-bottom:10px;border:1px solid #FFC267;background-color:#FFEB9A;}
+.history-filter-panel {margin-bottom:10px; border:1px solid #FFC267; background-color:#FFEB9A;}
 .history-filter-panel table {border: 0px;}
 .history-filter-panel table tr td {border:0px;}
 .history-filter-panel table tr th 
@@ -276,3 +291,68 @@ a.action-icon img {border:none;margin: 2px 2px 0 2px;}
 .gridview-rpt tr td {padding: 0px 4px 0 4px;}
 .gridview-rpt-alternate {background-color: #CCCC99;}
 .crystalstyle { width: 595px; height: 841px;}
+
+/*---------------------------------------------------
+|  DCCDB.aspx, inherits from Manage.aspx
++---------------------------------------------------*/
+div.dcc-search-panel  
+{
+    background-color: #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+#SearchBoxTable { border-collapse: collapse;}
+#SearchBoxTable th.search-head, #SearchBoxTable tr td { text-align: left; padding: 2px; border: 1px solid gray;}
+#SearchBoxTable tr td input { min-height: 20px;}
+
+.gridview-main { color: #005B00; background-color:#fff; }
+.gridview-main tr th {padding: 0 4px 0 4px; text-align: center; border: 1px solid #ccc;}
+.gridview-main tr td {padding: 0 4px 0 4px; min-height: 30px; border: 1px solid #ccc;}
+.gridview-main tr td.gridview-link a { text-align: center; color:Blue; }
+.gridview-main tr td.middle-align { text-align: center; }
+.gridview-main tr td.field-subject { min-width: 300px; }
+.gridview-main tr.field-alternate { background-color: #F4FFEC;}
+.gridview-main tr { height: 30px; }
+
+div#formview-background
+{
+    /* background-image: url('jQueryUI/css/pepper-grinder/images/ui-bg_diagonal-maze_40_000000_10x10.png'); */
+    background-color: #7C6032;
+    color: White;
+    padding: 20px;
+    min-width: 800px;
+    width: inherit;
+}
+table#dcc-edit-doc { min-width: 100%; }
+table#dcc-edit-doc tr th, table#dcc-edit-doc tr td { vertical-align: top; }
+table#dcc-edit-doc tr th { white-space:nowrap; text-align:left; margin: 2px; width: 160px; }
+table#dcc-edit-doc tr th span, table#dcc-edit-doc tr td span  
+{
+    border-collapse:collapse;
+    border: 1px solid #ccc;
+    display: block;
+    min-height: 16px;
+    padding: 0 4px 0 4px;
+    vertical-align: top;
+}
+table#dcc-edit-doc tr td span.frm-label  
+{
+    margin: 0 1px 10px 0;
+    vertical-align: top;
+}
+table#dcc-edit-doc tr td span.frm-dataf  
+{
+    margin: 0 20px 10px 0;
+    color: Gray; min-width: 80px;
+    background-color: White;
+    vertical-align: top;
+}
+table#dcc-edit-doc tr td span.frm-dataf, table#dcc-edit-doc tr td span.frm-dataf select {margin:0; padding:0;}
+table#dcc-edit-doc tr td input { min-width: 170px; }
+table#dcc-edit-doc tr td input.long-input { min-width: 100%; }
+table#dcc-edit-doc tr td input.medium-input { min-width: 300px;}
+
+.custom-combobox-input 
+{
+    padding: 3px 8px 3px 8px;    
+}

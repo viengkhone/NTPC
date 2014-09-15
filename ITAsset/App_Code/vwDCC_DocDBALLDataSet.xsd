@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="vwDCC_DocDBALLDataSet" targetNamespace="http://tempuri.org/vwDCC_DocDBALLDataSet.xsd" xmlns:mstns="http://tempuri.org/vwDCC_DocDBALLDataSet.xsd" xmlns="http://tempuri.org/vwDCC_DocDBALLDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="DccDBConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="DccDBConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.DccDBConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_DCC_DocDB_ALLTableAdapter" Name="vw_DCC_DocDB_ALL">
+            <MainSource>
+              <DbSource ConnectionRef="DccDBConnectionString (Web.config)" DbObjectName="NTPC_VTE.dbo.vw_DCC_DocDB_ALL" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT DocID, InOut, DCCLogNo, DCCLocation, Type, DateDocument, DateReceived, DateReleased, TimeOfRecordingADocument, Originator, Addressee, CompanyCode, CompanyName, NEWDocumentTitle, LienDoc, ContactID, ContactPerson, RefContract, OldContractNo, ContractDesc, GlobalReference, SharePointDocID, RefTransmittal, Comments, UpdatedBy, UpdatedAt, CreatedBy, CreatedAt, CarrieName, CarrieRef, AttnOf, ArchiveBoxRef, DeliveredTo, DistributeTo, fillingcode, NewDocTitle, ArchiveBoxReference, DossierReference, OriginatorCode, DeliverToPsn FROM dbo.vw_DCC_DocDB_ALL</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="DocID" DataSetColumn="DocID" />
+              <Mapping SourceColumn="InOut" DataSetColumn="InOut" />
+              <Mapping SourceColumn="DCCLogNo" DataSetColumn="DCCLogNo" />
+              <Mapping SourceColumn="DCCLocation" DataSetColumn="DCCLocation" />
+              <Mapping SourceColumn="Type" DataSetColumn="Type" />
+              <Mapping SourceColumn="DateDocument" DataSetColumn="DateDocument" />
+              <Mapping SourceColumn="DateReceived" DataSetColumn="DateReceived" />
+              <Mapping SourceColumn="DateReleased" DataSetColumn="DateReleased" />
+              <Mapping SourceColumn="TimeOfRecordingADocument" DataSetColumn="TimeOfRecordingADocument" />
+              <Mapping SourceColumn="Originator" DataSetColumn="Originator" />
+              <Mapping SourceColumn="Addressee" DataSetColumn="Addressee" />
+              <Mapping SourceColumn="CompanyCode" DataSetColumn="CompanyCode" />
+              <Mapping SourceColumn="CompanyName" DataSetColumn="CompanyName" />
+              <Mapping SourceColumn="NEWDocumentTitle" DataSetColumn="NEWDocumentTitle" />
+              <Mapping SourceColumn="LienDoc" DataSetColumn="LienDoc" />
+              <Mapping SourceColumn="ContactID" DataSetColumn="ContactID" />
+              <Mapping SourceColumn="ContactPerson" DataSetColumn="ContactPerson" />
+              <Mapping SourceColumn="RefContract" DataSetColumn="RefContract" />
+              <Mapping SourceColumn="OldContractNo" DataSetColumn="OldContractNo" />
+              <Mapping SourceColumn="ContractDesc" DataSetColumn="ContractDesc" />
+              <Mapping SourceColumn="GlobalReference" DataSetColumn="GlobalReference" />
+              <Mapping SourceColumn="SharePointDocID" DataSetColumn="SharePointDocID" />
+              <Mapping SourceColumn="RefTransmittal" DataSetColumn="RefTransmittal" />
+              <Mapping SourceColumn="Comments" DataSetColumn="Comments" />
+              <Mapping SourceColumn="UpdatedBy" DataSetColumn="UpdatedBy" />
+              <Mapping SourceColumn="UpdatedAt" DataSetColumn="UpdatedAt" />
+              <Mapping SourceColumn="CreatedBy" DataSetColumn="CreatedBy" />
+              <Mapping SourceColumn="CreatedAt" DataSetColumn="CreatedAt" />
+              <Mapping SourceColumn="CarrieName" DataSetColumn="CarrieName" />
+              <Mapping SourceColumn="CarrieRef" DataSetColumn="CarrieRef" />
+              <Mapping SourceColumn="AttnOf" DataSetColumn="AttnOf" />
+              <Mapping SourceColumn="ArchiveBoxRef" DataSetColumn="ArchiveBoxRef" />
+              <Mapping SourceColumn="DeliveredTo" DataSetColumn="DeliveredTo" />
+              <Mapping SourceColumn="DistributeTo" DataSetColumn="DistributeTo" />
+              <Mapping SourceColumn="fillingcode" DataSetColumn="fillingcode" />
+              <Mapping SourceColumn="NewDocTitle" DataSetColumn="NewDocTitle" />
+              <Mapping SourceColumn="ArchiveBoxReference" DataSetColumn="ArchiveBoxReference" />
+              <Mapping SourceColumn="DossierReference" DataSetColumn="DossierReference" />
+              <Mapping SourceColumn="OriginatorCode" DataSetColumn="OriginatorCode" />
+              <Mapping SourceColumn="DeliverToPsn" DataSetColumn="DeliverToPsn" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="vwDCC_DocDBALLDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="False">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vw_DCC_DocDB_ALL">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DocID" type="xs:int" />
+              <xs:element name="InOut" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DCCLogNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DCCLocation" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Type" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DateDocument" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DateReceived" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DateReleased" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="TimeOfRecordingADocument" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Originator" type="xs:int" minOccurs="0" />
+              <xs:element name="Addressee" type="xs:int" minOccurs="0" />
+              <xs:element name="CompanyCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CompanyName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NEWDocumentTitle" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LienDoc" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1073741823" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ContactID" type="xs:int" minOccurs="0" />
+              <xs:element name="ContactPerson" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RefContract" type="xs:int" minOccurs="0" />
+              <xs:element name="OldContractNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ContractDesc" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1073741823" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="GlobalReference" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SharePointDocID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RefTransmittal" type="xs:int" minOccurs="0" />
+              <xs:element name="Comments" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1073741823" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UpdatedBy" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UpdatedAt" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CreatedBy" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CreatedAt" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CarrieName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CarrieRef" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AttnOf" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ArchiveBoxRef" type="xs:int" minOccurs="0" />
+              <xs:element name="DeliveredTo" type="xs:int" minOccurs="0" />
+              <xs:element name="DistributeTo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="fillingcode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NewDocTitle" msdata:ReadOnly="true" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ArchiveBoxReference" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DossierReference" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OriginatorCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DeliverToPsn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_DCC_DocDB_ALL" />
+      <xs:field xpath="mstns:DocID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

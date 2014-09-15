@@ -26,11 +26,8 @@ public partial class Reports : System.Web.UI.Page
 
         ITAsset.AssetUtility Util = new ITAsset.AssetUtility();
         DataSet DS1 = new DataSet();
-        DS1 = Util.GetDataSetBySQL("SELECT Code, ISNULL([Desktop Set],0) AS Desktop, ISNULL([Laptop Set],0) AS Laptop FROM [vw_Rpt_ByDivision]", "Division");
+        DS1 = Util.GetDataSetBySQL("SELECT Code, ISNULL([Desktop Set],0) AS Desktop, ISNULL([Laptop Set],0) AS Laptop, ISNULL([Printer],0) AS Printers, ISNULL([Scanner Machine],0) AS Scanners FROM [vw_Rpt_ByDivision]", "Division");
         ltrChart1.Text = GetChartItemByDivision(DS1).ToHtmlString();
-
-        DS1 = Util.GetDataSetBySQL("SELECT TypeName AS name, COUNT(id) AS count FROM dbo.vw_ITAssetAllProducts GROUP BY TypeName;", "Status");
-        ltrChart2.Text = GetChartItemByMainType(DS1).ToHtmlString();
     }
 
     /*******************************************************************************************
@@ -42,6 +39,8 @@ public partial class Reports : System.Web.UI.Page
         String[] myCategory = new String[dsSeries.Tables[0].Rows.Count];
         String myLaptopVal = "";
         String myDesktopVal = "";
+        String myPrinterVal = "";
+        String myScannerVal = "";
         Int32 i = 0;
 
         foreach (DataRow dr0 in dsSeries.Tables[0].Rows)
@@ -59,6 +58,16 @@ public partial class Reports : System.Web.UI.Page
             myDesktopVal = myDesktopVal + dr2["Desktop"] + ",";
         }
         myDesktopVal = myDesktopVal.Substring(0, myDesktopVal.Length - 1);
+        foreach (DataRow dr3 in dsSeries.Tables[0].Rows)
+        {
+            myPrinterVal = myPrinterVal + dr3["Printers"] + ",";
+        }
+        myPrinterVal = myPrinterVal.Substring(0, myPrinterVal.Length - 1);
+        foreach (DataRow dr4 in dsSeries.Tables[0].Rows)
+        {
+            myScannerVal = myScannerVal + dr4["Scanners"] + ",";
+        }
+        myScannerVal = myScannerVal.Substring(0, myScannerVal.Length - 1);
 
         //Start Graph 1 Chart
         DotNet.Highcharts.Highcharts chart = new DotNet.Highcharts.Highcharts("chart")
@@ -81,6 +90,14 @@ public partial class Reports : System.Web.UI.Page
                 new Series{
                     Name = "Desktop Set",
                     Data = new Data(new object[] { myDesktopVal })
+                },
+                new Series{
+                    Name = "Printer",
+                    Data = new Data(new object[] { myPrinterVal })
+                },
+                new Series{
+                    Name = "Scanner",
+                    Data = new Data(new object[] { myScannerVal })
                 }
             })
             .SetTitle(new Title
@@ -99,7 +116,7 @@ public partial class Reports : System.Web.UI.Page
             })
             .SetYAxis(new YAxis
             {
-                Title = new XAxisTitle { Text = "No. of Laptop & Desktop" },
+                Title = new XAxisTitle { Text = "Total No. of IT Assets" },
                 PlotLines = new[]
                 {
                     new XAxisPlotLines

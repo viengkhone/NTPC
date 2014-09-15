@@ -7,10 +7,11 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    <script src="design/jQueryUI/js/jquery-1.8.2.js" type="text/javascript"></script>
+    <script src="design/jQueryUI/js/jquery-1.8.0.min.js" type="text/javascript"></script>
     <script src="design/jQueryUI/js/jquery-ui-1.9.1.custom.min.js" type="text/javascript"></script>
     <script src="design/HighChart/js/highcharts.js" type="text/javascript"></script>
     <script src="design/HighChart/js/modules/exporting.js" type="text/javascript"></script>
+    <script src="design/browserDetect.js" type="text/javascript"></script>
     <link rel="stylesheet" title="Main Style" type="text/css" href="design/StyleSheet.css" />
     <!--[if IE]>
 	<link rel="stylesheet" title="Main Style" type="text/css" href="design/StyleSheet.IE.css" />
@@ -26,8 +27,15 @@
                     <img alt="Logo" src="design/NTPC_MiniLogo.png" />
                 </td>
                 <td>
-                    <h1 style="font-size: 20px;">IT Asset Tracking System - ICT Department</h1>
+                    <h1 style="font-size: 20px;">Custom Application - ICT Department</h1>
                     <h2 style="font-size: 16px;">Integrated Management System Division (IMS)</h2>
+                    <h4 dir="rtl">
+                        <script type="text/javascript" language="javascript">
+                            document.write("You are using: " + BrowserDetect.browser
+                            + " v" + BrowserDetect.version + ", on " + BrowserDetect.OS
+                            + ". This website is best view in Chrome on Windows");
+                        </script>
+                    </h4>
                 </td>
             </tr>
         </table>
@@ -41,6 +49,8 @@
                         <asp:MenuItem Text="History" Value="History" NavigateUrl="History.aspx" ></asp:MenuItem>
                         <asp:MenuItem Text="Manage Asset" Value="Manage Asset" NavigateUrl="Manage.aspx"></asp:MenuItem>
                         <asp:MenuItem Text="Reports" Value="Reports" NavigateUrl="Reports.aspx"></asp:MenuItem>
+                        <asp:MenuItem Text="Cartridge" Value="Cartridge" NavigateUrl="Cartridge.aspx"></asp:MenuItem>
+                        <asp:MenuItem Text="DCC Database" NavigateUrl="DccDB.aspx"></asp:MenuItem>
                     </Items>
                 </asp:Menu>
             </td><td valign="middle" align="right">

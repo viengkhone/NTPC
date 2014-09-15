@@ -1,13 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Reports.aspx.cs" Inherits="Reports" %>
-
-<%@ Register assembly="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" namespace="CrystalDecisions.Web" tagprefix="CR" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <link href="design/jQueryUI/css/swanky-purse/jquery-ui.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
         div#settings .ui-tabs-nav li.ui-tabs-active a {
             color: #663333;
         }
+        div#settings {background-color:White;}
     </style>
 </asp:Content>
 
@@ -41,12 +39,12 @@
                     <asp:BoundField DataField="SubTypeName" HeaderText="Subtype Name" SortExpression="SubTypeName" />
                     <asp:BoundField DataField="UserAssign" HeaderText="User Assign" SortExpression="UserAssign" />
                     <asp:BoundField DataField="LocationAssign" HeaderText="Loc Assign" SortExpression="LocationAssign" />
-                    <asp:BoundField DataField="Claim" HeaderText="Claim" SortExpression="Claim" />
-                    <asp:BoundField DataField="Repair" HeaderText="Repair" SortExpression="Repair" />
+                    <asp:BoundField DataField="Claimed" HeaderText="Claim" SortExpression="Claimed" />
+                    <asp:BoundField DataField="ToRepair" HeaderText="To Repair" SortExpression="ToRepair" />
                     <asp:BoundField DataField="Lost" HeaderText="Lost" SortExpression="Lost" />
-                    <asp:BoundField DataField="ToBeDispose" HeaderText="ToBeDispose" SortExpression="ToBeDispose" />
+                    <asp:BoundField DataField="ToDispose" HeaderText="To Dispose" SortExpression="ToDispose" />
                     <asp:BoundField DataField="Disposed" HeaderText="Disposed" SortExpression="Disposed" />
-                    <asp:BoundField DataField="InStore" HeaderText="InStore" SortExpression="InStore" />
+                    <asp:BoundField DataField="In_Store" HeaderText="In Store" SortExpression="In_Store" />
                 </Columns>
                 <AlternatingRowStyle CssClass="gridview-rpt-alternate" />
             </asp:GridView>
@@ -62,29 +60,11 @@
         </div>
         <!-- Start tab 4 : List item by User & Division /-->
         <div id="Div4">
-            <CR:CrystalReportViewer ID="Report_By_User" runat="server" 
-                AutoDataBind="true" PageZoomFactor="60"
-                HasDrilldownTabs="False" HasToggleGroupTreeButton="False" 
-                HasToggleParameterPanelButton="False" Height="1220px" 
-                ReportSourceID="CRS_rptUserDiv" ToolPanelView="None" 
-                Width="881px" ReuseParameterValuesOnRefresh="True" HasPrintButton="False" />
-            <CR:CrystalReportSource ID="CRS_rptUserDiv" runat="server">
-                <Report FileName="rpt_byUserAndDivision.rpt">
-                </Report>
-            </CR:CrystalReportSource>
+            
         </div>
         <!-- Start tab 5 : List item by Type and Location/ -->
         <div id="Div5">
-        <CR:CrystalReportViewer ID="Report_By_TypeAndLocation" runat="server" 
-                AutoDataBind="true" PageZoomFactor="60"
-                HasDrilldownTabs="False" HasToggleGroupTreeButton="False" 
-                HasToggleParameterPanelButton="False" Height="1220px" 
-                ReportSourceID="CRS_byTypeAndLoc" ToolPanelView="None" 
-                Width="881px" ReuseParameterValuesOnRefresh="True" HasPrintButton="False" />
-            <CR:CrystalReportSource ID="CRS_byTypeAndLoc" runat="server">
-                <Report FileName="rpt_byTypeAndLocation.rpt">
-                </Report>
-            </CR:CrystalReportSource>
+        
         </div>
         <!-- Start tab 6 : List item by Location/ -->
         <div id="Div6">

@@ -1,9 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Dashboard.aspx.cs" Inherits="Dashboard" %>
-
 <%@ Register assembly="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <link href="design/jQueryUI/css/south-street/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        div#settings {background-color:White;}
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
@@ -70,30 +72,37 @@
         </asp:LinqDataSource>
         <br />
         <!--2nd GridView Showing Selected SubType-->
-        <asp:GridView ID="GridView2" runat="server"  
-            CssClass="gridview-green" AutoGenerateColumns="False" 
-            DataSourceID="Sql_vw_SubTypeByStatus" AllowPaging="True" >
-            <AlternatingRowStyle CssClass="gridview-green-alternate" />
+        <asp:GridView ID="GridView2" CssClass="Asset-Listing-Grid2" runat="server" AutoGenerateColumns="False" 
+            DataSourceID="Sql_vw_SubTypeByStatus" AllowPaging="True" AllowSorting="true" PageSize="30">
+            <AlternatingRowStyle BackColor="#E6FF99" />
             <Columns>
-                <asp:BoundField DataField="SubTypeName" HeaderText="Sub Type Name" SortExpression="SubTypeName" ItemStyle-Width="150px" />
-                <asp:BoundField DataField="ITAssetDetails" HeaderText="IT Asset Name" SortExpression="ITAssetDetails" ItemStyle-Width="200px" />
-                <asp:HyperLinkField DataTextField="USER_ASSIGNED" HeaderText="User Assign" DataNavigateUrlFields="ITAssetDetails" DataNavigateUrlFormatString="Dashboard.aspx?enumStatus=2&AssetName={0}" />
-                <asp:HyperLinkField DataTextField="LOCATION_ASSIGNED" HeaderText="Loc Assign" DataNavigateUrlFields="ITAssetDetails" DataNavigateUrlFormatString="Dashboard.aspx?enumStatus=3&AssetName={0}" />
-                <asp:HyperLinkField DataTextField="IN_STORE" HeaderText="In Store" DataNavigateUrlFields="ITAssetDetails" DataNavigateUrlFormatString="Dashboard.aspx?enumStatus=1&AssetName={0}" />
-                <asp:HyperLinkField DataTextField="CLAIM" HeaderText="Claim" DataNavigateUrlFields="ITAssetDetails" DataNavigateUrlFormatString="Dashboard.aspx?enumStatus=6&AssetName={0}" />
-                <asp:HyperLinkField DataTextField="REPAIRE" HeaderText="Replair" DataNavigateUrlFields="ITAssetDetails" DataNavigateUrlFormatString="Dashboard.aspx?enumStatus=7&AssetName={0}" />
-                <asp:HyperLinkField DataTextField="LOST" HeaderText="Lost" DataNavigateUrlFields="ITAssetDetails" DataNavigateUrlFormatString="Dashboard.aspx?enumStatus=8&AssetName={0}" />
-                <asp:HyperLinkField DataTextField="TO_BE_DISPOSED" HeaderText="To dispose" DataNavigateUrlFields="ITAssetDetails" DataNavigateUrlFormatString="Dashboard.aspx?enumStatus=9&AssetName={0}" />
-                <asp:HyperLinkField DataTextField="DISPOSED" HeaderText="Disposed" DataNavigateUrlFields="ITAssetDetails" DataNavigateUrlFormatString="Dashboard.aspx?enumStatus=10&AssetName={0}" />
+                <asp:BoundField DataField="SubTypeName" HeaderText="Sub Type Name" ItemStyle-Width="150px" />
+                <asp:BoundField DataField="ITAssetDetails" HeaderText="IT Asset Name" ItemStyle-Width="200px" />
+                <asp:HyperLinkField DataTextField="Group Assign" HeaderText="Group Assign" ItemStyle-HorizontalAlign="Center" SortExpression="ITAssetDetails" DataNavigateUrlFields="ITAssetDetails" DataNavigateUrlFormatString="Dashboard.aspx?enumStatus=1&AssetName={0}" DataTextFormatString="{0:###,###}" />
+                <asp:HyperLinkField DataTextField="User Assign" HeaderText="User Assign" ItemStyle-HorizontalAlign="Center" SortExpression="ITAssetDetails" DataNavigateUrlFields="ITAssetDetails" DataNavigateUrlFormatString="Dashboard.aspx?enumStatus=2&AssetName={0}" DataTextFormatString="{0:###,###}" />
+                <asp:HyperLinkField DataTextField="Loc Assign" HeaderText="Loc Assing" ItemStyle-HorizontalAlign="Center" SortExpression="ITAssetDetails" DataNavigateUrlFields="ITAssetDetails" DataNavigateUrlFormatString="Dashboard.aspx?enumStatus=3&AssetName={0}" DataTextFormatString="{0:###,###}" />
+                <asp:HyperLinkField DataTextField="Await Assign" HeaderText="Await Assing" ItemStyle-HorizontalAlign="Center" SortExpression="ITAssetDetails" DataNavigateUrlFields="ITAssetDetails" DataNavigateUrlFormatString="Dashboard.aspx?enumStatus=5&AssetName={0}" DataTextFormatString="{0:###,###}" />
+                <asp:HyperLinkField DataTextField="Reserved" HeaderText="Reserved" ItemStyle-HorizontalAlign="Center" SortExpression="ITAssetDetails" DataNavigateUrlFields="ITAssetDetails" DataNavigateUrlFormatString="Dashboard.aspx?enumStatus=12&AssetName={0}" DataTextFormatString="{0:###,###}" />
+                <asp:HyperLinkField DataTextField="To Repair" HeaderText="To Repair" ItemStyle-HorizontalAlign="Center" SortExpression="ITAssetDetails" DataNavigateUrlFields="ITAssetDetails" DataNavigateUrlFormatString="Dashboard.aspx?enumStatus=7&AssetName={0}" DataTextFormatString="{0:###,###}" />
+                <asp:HyperLinkField DataTextField="On Repair" HeaderText="Repaired" ItemStyle-HorizontalAlign="Center" SortExpression="ITAssetDetails" DataNavigateUrlFields="ITAssetDetails" DataNavigateUrlFormatString="Dashboard.aspx?enumStatus=15&AssetName={0}" DataTextFormatString="{0:###,###}" />
+                <asp:HyperLinkField DataTextField="To Claim" HeaderText="To Claim" ItemStyle-HorizontalAlign="Center" SortExpression="ITAssetDetails" DataNavigateUrlFields="ITAssetDetails" DataNavigateUrlFormatString="Dashboard.aspx?enumStatus=6&AssetName={0}" DataTextFormatString="{0:###,###}" />
+                <asp:HyperLinkField DataTextField="Claimed" HeaderText="Claimed" ItemStyle-HorizontalAlign="Center" SortExpression="ITAssetDetails" DataNavigateUrlFields="ITAssetDetails" DataNavigateUrlFormatString="Dashboard.aspx?enumStatus=11&AssetName={0}" DataTextFormatString="{0:###,###}" />
+                <asp:HyperLinkField DataTextField="To Dispose" HeaderText="To Dispose" ItemStyle-HorizontalAlign="Center" SortExpression="ITAssetDetails" DataNavigateUrlFields="ITAssetDetails" DataNavigateUrlFormatString="Dashboard.aspx?enumStatus=9&AssetName={0}" DataTextFormatString="{0:###,###}" />
+                <asp:HyperLinkField DataTextField="Disposed" HeaderText="Disposed" ItemStyle-HorizontalAlign="Center" SortExpression="ITAssetDetails" DataNavigateUrlFields="ITAssetDetails" DataNavigateUrlFormatString="Dashboard.aspx?enumStatus=10&AssetName={0}" DataTextFormatString="{0:###,###}" />
+                <asp:HyperLinkField DataTextField="To Donate" HeaderText="To Donate" ItemStyle-HorizontalAlign="Center" SortExpression="ITAssetDetails" DataNavigateUrlFields="ITAssetDetails" DataNavigateUrlFormatString="Dashboard.aspx?enumStatus=13&AssetName={0}" DataTextFormatString="{0:###,###}" />
+                <asp:HyperLinkField DataTextField="Donated" HeaderText="Donated" ItemStyle-HorizontalAlign="Center" SortExpression="ITAssetDetails" DataNavigateUrlFields="ITAssetDetails" DataNavigateUrlFormatString="Dashboard.aspx?enumStatus=14&AssetName={0}" DataTextFormatString="{0:###,###}" />
+                <asp:HyperLinkField DataTextField="Lost" HeaderText="Lost" ItemStyle-HorizontalAlign="Center" SortExpression="ITAssetDetails" DataNavigateUrlFields="ITAssetDetails" DataNavigateUrlFormatString="Dashboard.aspx?enumStatus=8&AssetName={0}" DataTextFormatString="{0:###,###}" />
+                <asp:HyperLinkField DataTextField="IN_STORE" HeaderText="IN_STORE" ItemStyle-HorizontalAlign="Center" DataNavigateUrlFields="ITAssetDetails" SortExpression="ITAssetDetails" DataNavigateUrlFormatString="Dashboard.aspx?enumStatus=4&AssetName={0}" DataTextFormatString="{0:###,###}" />
             </Columns>
+            <HeaderStyle CssClass="header-vertical-orient" />
             <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast" NextPageText="Next" PreviousPageText="Prev" />
             <SelectedRowStyle CssClass="gridview-green-selected-row" />
-            <PagerStyle CssClass="gridview-green-footer" VerticalAlign="Middle" Font-Bold="true" HorizontalAlign="Center" />
+            <PagerStyle BackColor="#99CC00" VerticalAlign="Middle" Font-Bold="true" HorizontalAlign="Center" />
         </asp:GridView>
         <asp:SqlDataSource ID="Sql_vw_SubTypeByStatus" runat="server" 
             ConnectionString="<%$ ConnectionStrings:ITAssetTrackingConnectionString2 %>" 
             
-            SelectCommand="SELECT SubTypeName, ITAssetDetails, USER_ASSIGNED, LOCATION_ASSIGNED, CLAIM, REPAIRE, LOST, TO_BE_DISPOSED, DISPOSED, IN_STORE FROM vw_SubTypeByStatus WHERE (SubTypeName = @SubTypeName)">
+            SelectCommand="SELECT SubTypeName,ITAssetDetails,[Group Assign],[User Assign],[Loc Assign],[Await Assign],[Reserved],[To Repair],[On Repair],[To Claim],[Claimed],[To Dispose],[Disposed],[To Donate],[Donated],[Lost],[IN_STORE] FROM vw_SubTypeByStatus WHERE (SubTypeName = @SubTypeName)">
             <SelectParameters>
                 <asp:ControlParameter ControlID="GridView1" Name="SubTypeName" 
                     PropertyName="SelectedValue" Type="String" DefaultValue="Laptop Set" />
@@ -186,19 +195,19 @@
         <p>Notyet Implement</p>
     </div>
     </div>
+
     <!--End Tab Control using jQueryUI-->
 
     <script type="text/javascript">
-    $(document).ready(function () {
-        $('#settings').tabs({
-            select: function (event, ui) {
-                $("#<%= hfSelectedTAB.ClientID %>").val(ui.index);
-            }
+        $(document).ready(function () {
+            $('#settings').tabs({
+                select: function (event, ui) {
+                    $("#<%= hfSelectedTAB.ClientID %>").val(ui.index);
+                }
+            });
+            $("#settings").tabs("option", "selected", [$("#<%= hfSelectedTAB.ClientID %>").val()]);
+            $("#resizable").resizable();
         });
-        $("#settings").tabs("option", "selected", [$("#<%= hfSelectedTAB.ClientID %>").val()]);
-        $("#resizable").resizable();
-    });
 </script>
 <asp:HiddenField ID="hfSelectedTAB" runat="server"  Value="0"/>
 </asp:Content>
-

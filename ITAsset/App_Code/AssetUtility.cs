@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data;
+using System.Collections;
 
 namespace ITAsset
 {
@@ -150,14 +151,36 @@ namespace ITAsset
         {
             string UserName = HttpContext.Current.User.Identity.Name.ToString().ToLower();
             UserName = UserName.Replace("namtheun2\\", "");
-            if (UserName == "khamsone" || UserName == "viengkhone" || UserName == "thatchakorn")
+
+            if (UserName == "khamsone" || UserName == "viengkhone")
             {
                 return UserName + " [Admin]";
+            }
+            else if (UserName == "thatchakorn" || UserName == "anouphone" || UserName == "khampaseuth" || UserName == "kongmany" || UserName == "phonevilay" || UserName == "singsouttho" || UserName == "sinnakone")
+            {
+                return UserName + " [Contributor]";
+            }
+            else if (UserName == "yenchit" || UserName == "vanida" || UserName == "viengkham" || UserName == "dalavone" || UserName == "latthikone" || UserName == "khanthong" || UserName == "viengkhone_dba")
+            {
+                return UserName + " [DCC Team]";
             }
             else
             {
                 return UserName + " [Read Only]";
             }
+        }
+        public string GetUserNameOnly()
+        {
+            string UserName = HttpContext.Current.User.Identity.Name.ToString().ToLower();
+            UserName = UserName.Replace("namtheun2\\", "");
+
+            return UserName;
+        }
+        public string GetUserFullLogin()
+        {
+            string UserName = HttpContext.Current.User.Identity.Name.ToString().ToLower();
+
+            return UserName;
         }
 
         /*******************************************************************************
@@ -186,6 +209,25 @@ namespace ITAsset
             {
                 throw ex;
             }
+        }
+
+        public ArrayList GetDccData(string sql)
+        {
+            ArrayList lst = new ArrayList();
+            System.Data.SqlClient.SqlConnection Conn = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DccDBConnectionString"].ToString());
+            Conn.Open();
+            System.Data.SqlClient.SqlCommand myCmd = new System.Data.SqlClient.SqlCommand(sql, Conn);
+            System.Data.SqlClient.SqlDataAdapter da = new System.Data.SqlClient.SqlDataAdapter(myCmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                lst.Add(new object[] { dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString(), dr[8].ToString(), dr[9].ToString(), dr[10].ToString(), dr[11].ToString(), dr[12].ToString(), dr[13].ToString(), dr[14].ToString(), dr[15].ToString() });
+            }
+            Conn.Close();
+            
+            return lst;
         }
     }
 }

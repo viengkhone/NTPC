@@ -100,7 +100,7 @@
 
                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
                     ConnectionString="<%$ ConnectionStrings:ITAssetTrackingConnectionString2 %>" 
-                    SelectCommand="SELECT [id], [ITAssetDetails], [UniquePartNum], [currentUserID], [Location], [UserType], [UserName], [StatusName] FROM [vw_ITAssetAllProducts] WHERE (([TypeName] = @TypeName) AND ([SubTypeName] = @SubTypeName) AND ([ITAssetDetails] = @ITAssetDetails))">
+                    SelectCommand="SELECT * FROM [vw_ITAssetAllProducts] WHERE (([TypeName] = @TypeName) AND ([SubTypeName] = @SubTypeName) AND ([ITAssetDetails] = @ITAssetDetails))">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="cmbMainType" DefaultValue="Computer" Name="TypeName" PropertyName="SelectedValue" Type="String" />
                         <asp:ControlParameter ControlID="cmbSubType" Name="SubTypeName" PropertyName="SelectedValue" Type="String" />
@@ -123,6 +123,19 @@
                         <asp:BoundField DataField="ITAssetDetails" HeaderText="IT Asset Details" SortExpression="ITAssetDetails">
                         </asp:BoundField>
                         <asp:BoundField DataField="UniquePartNum" HeaderText="Unique Part No." SortExpression="UniquePartNum" />
+                        <asp:BoundField DataField="PR_NO" HeaderText="PR No." SortExpression="PR_NO" />
+                        <asp:BoundField DataField="PO_NO" HeaderText="PO No." SortExpression="PO_NO" />
+                        <asp:BoundField DataField="DateOfUse" HeaderText="Using Date" SortExpression="DateOfUse" DataFormatString="{0:d}" />
+                        <asp:TemplateField HeaderText="Price" SortExpression="Price">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Price") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label1" runat="server" 
+                                    Text='<%# Eval("Currency") + Eval("Price", "{0:0,000.00}") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="WarrantyEnd" HeaderText="Warranty End" SortExpression="WarrantyEnd" DataFormatString="{0:d}" />
                         <asp:BoundField DataField="Location" HeaderText="Current Location" SortExpression="Location" />
                         <asp:BoundField DataField="UserName" HeaderText="User Name" SortExpression="UserName" />
                         <asp:BoundField DataField="StatusName" HeaderText="Status" SortExpression="StatusName" />
@@ -141,8 +154,7 @@
                 <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" DataSourceID="SqlDS_DetailsView1" 
                     ForeColor="#333333" GridLines="None" CssClass="manage-detailview" 
                         DataKeyNames="id" ondatabound="DetailsView1_DataBound" 
-                        oniteminserted="DetailsView1_ItemInserted" 
-                        onitemupdated="DetailsView1_ItemUpdated" >
+                        oniteminserted="DetailsView1_ItemInserted" >
                     <AlternatingRowStyle BackColor="White" />
                     <Fields>
                         <asp:BoundField DataField="id" HeaderText="ID" ReadOnly="True" SortExpression="id" InsertVisible="false" />
@@ -179,7 +191,6 @@
                         </asp:BoundField>
                         <asp:BoundField DataField="CostCode" HeaderText="Cost Code" SortExpression="CostCode" />
                         <asp:BoundField DataField="SupplierID" HeaderText="Supplier" SortExpression="SupplierID" />
-                        <asp:BoundField DataField="ReceivingNumber" HeaderText="Receiving Number" SortExpression="ReceivingNumber" />
                         <asp:BoundField DataField="ShipmentDate" HeaderText="Shipment Date" SortExpression="ShipmentDate" DataFormatString="{0:d}" >
                             <ControlStyle CssClass="date-type" />
                         </asp:BoundField>
@@ -269,6 +280,7 @@
                                 </asp:DropDownList>
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:BoundField DataField="ReceivingNumber" HeaderText="FAD Asset-ID" SortExpression="ReceivingNumber" />
                         <asp:TemplateField HeaderText="Section" SortExpression="SectionID">
                             <EditItemTemplate>
                                 <asp:DropDownList ID="DropDownList5" runat="server" 
@@ -358,17 +370,39 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Status" SortExpression="enumStatus">
                             <ItemTemplate>
-                                <asp:DropDownList ID="DropDownList6" runat="server"
+                                <asp:DropDownList ID="DropDownList6" runat="server" AppendDataBoundItems="true"
                                     DataSourceID="SqlDS_Status_table" DataTextField="StatusName" DataValueField="id"
                                     Enabled="false" SelectedValue='<%# Bind("enumStatus") %>'>
+                                    <asp:ListItem Value=""></asp:ListItem>
                                 </asp:DropDownList>
                             </ItemTemplate>
                             <EditItemTemplate>
-                                <asp:DropDownList ID="DropDownList6" runat="server"
+                                <asp:DropDownList ID="DropDownList6" runat="server" AppendDataBoundItems="true"
                                     DataSourceID="SqlDS_Status_table" DataTextField="StatusName" DataValueField="id"
                                     Enabled="true" SelectedValue='<%# Bind("enumStatus") %>'>
+                                    <asp:ListItem Value=""></asp:ListItem>
                                 </asp:DropDownList>
                             </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Section" SortExpression="SectionID">
+                            <EditItemTemplate>
+                                <asp:DropDownList ID="DropDownList_Section" runat="server" 
+                                    DataSourceID="SqlDS_Section" DataTextField="Section" DataValueField="id" 
+                                    SelectedValue='<%# Bind("SectionID") %>'>
+                                </asp:DropDownList>
+                            </EditItemTemplate>
+                            <InsertItemTemplate>
+                                <asp:DropDownList ID="DropDownList_Section" runat="server" 
+                                    DataSourceID="SqlDS_Section" DataTextField="Section" DataValueField="id" 
+                                    SelectedValue='<%# Bind("SectionID") %>'>
+                                </asp:DropDownList>
+                            </InsertItemTemplate>
+                            <ItemTemplate>
+                                <asp:DropDownList ID="DropDownList_Section" runat="server" 
+                                    DataSourceID="SqlDS_Section" SelectedValue='<%# Bind("SectionID") %>' 
+                                    DataTextField="Section" DataValueField="id" Enabled="False">
+                                </asp:DropDownList>
+                            </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Edit Date" SortExpression="EditDate">
                             <EditItemTemplate>
@@ -481,7 +515,7 @@
                         ConnectionString="<%$ ConnectionStrings:ITAssetTrackingConnectionString2 %>" 
                         DeleteCommand="DELETE FROM [ITASSET].[ITAssetProductInfo] WHERE [id] = @id" 
                         SelectCommand="SELECT * FROM [ITASSET].[ITAssetProductInfo] WHERE ([id] = @id)" 
-                        UpdateCommand="UPDATE [ITASSET].[ITAssetProductInfo] SET [enumStatus] = @enumStatus, [currentUserID] = @currentUserID, [currentLocationID] = @currentLocationID, [AssignmentComment] = @AssignmentComment WHERE [id] = @id">
+                        UpdateCommand="UPDATE [ITASSET].[ITAssetProductInfo] SET [enumStatus] = @enumStatus, [currentUserID] = @currentUserID, [currentLocationID] = @currentLocationID, [AssignmentComment] = @AssignmentComment, [EditBy]=@EditBy, [EditDate]=@EditDate, sectionID = @sectionID WHERE [id] = @id">
                     <DeleteParameters>
                         <asp:Parameter Name="id" Type="Int32" />
                     </DeleteParameters>
@@ -493,7 +527,10 @@
                         <asp:Parameter Name="enumStatus" Type="Decimal" />
                         <asp:Parameter Name="currentUserID" Type="Int32" />
                         <asp:Parameter Name="currentLocationID" Type="Int32" />
+                        <asp:Parameter Name="sectionID" Type="Int32" />
                         <asp:Parameter Name="AssignmentComment" Type="String" />
+                        <asp:Parameter Name="EditBy" Type="String" />
+                        <asp:Parameter Name="EditDate" Type="DateTime" />
                         <asp:Parameter Name="id" Type="Int32" />
                     </UpdateParameters>
                 </asp:SqlDataSource>
@@ -504,7 +541,7 @@
                 </asp:LinqDataSource>
                 <asp:SqlDataSource ID="SqlDS_Status_table" runat="server" 
                     ConnectionString="<%$ ConnectionStrings:ITAssetTrackingConnectionString2 %>" 
-                    SelectCommand="SELECT NULL AS [id], 'N/A' AS [StatusName] UNION SELECT * FROM [ITASSET].[enumStatus]"></asp:SqlDataSource>
+                    SelectCommand="SELECT [id], ([StatusGroup] + ' - ' +[StatusName]) AS StatusName FROM [ITASSET].[enumStatus] ORDER BY [Sort]"></asp:SqlDataSource>
                 <asp:SqlDataSource ID="SqlDS_User" runat="server" 
                     ConnectionString="<%$ ConnectionStrings:ITAssetTrackingConnectionString2 %>" 
                     SelectCommand="SELECT [id], [Name] FROM [vw_All_Users] ORDER BY [Name]"></asp:SqlDataSource>
@@ -879,4 +916,5 @@
     });
 </script>
 <asp:HiddenField ID="hfSelectedTAB" runat="server"  Value="0"/>
+    <asp:HiddenField ID="hfUserName" runat="server" onload="hfUserName_Load" />
 </asp:Content>

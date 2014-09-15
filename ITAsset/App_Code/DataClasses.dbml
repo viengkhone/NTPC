@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ITAssetTracking" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=AP02\SQLEXPRESS;Initial Catalog=ITAssetTracking;User ID=jump" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ITAssetTrackingConnectionString2" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=AP02\SQLEXPRESS;Initial Catalog=ITAssetTracking;User ID=ITAsset;Connect Timeout=120" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ITAssetTrackingConnectionString2" Provider="System.Data.SqlClient" />
   <Table Name="ITASSET.Admin" Member="Admins">
     <Type Name="Admin">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />

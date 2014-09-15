@@ -2,6 +2,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <link href="design/jQueryUI/css/ui-lightness/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        div#settings {background-color:White;}
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
